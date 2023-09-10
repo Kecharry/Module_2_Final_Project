@@ -1,0 +1,281 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Modern Search with Filters</title>
+    <link rel="stylesheet" href="style.css">
+</head>
+<body>
+    <header>
+        <h1>Modern Search with Filters</h1>
+    </header>
+    <div id="search-container">
+        <div id="search-bar">
+            
+            <button id="add-filter-button" onclick="addFilter()">Add Filter</button>
+        </div>
+    </div>
+    <div id="active-filters">
+        <h3>Active Filters:</h3>
+        <ul id="active-filter-list"></ul>
+    </div>
+
+    <div id="content">
+        <div class="column">
+            <h2>10,000 Words Filter</h2>
+            <hr>
+            <ul id = 'myUL'>
+                <li>Once upon a time, in a faraway land, there lived a brave knight who embarked on a quest to rescue a captured princess.</li>
+                <li>The old bookstore at the corner of the street had a magical secret: its books could transport readers to different worlds.</li>
+                <li>Under the starry night sky, two strangers met on a train, and in that brief encounter, they found a connection that would change their lives forever.</li>
+                <li>In a small village, a gifted blacksmith forged a sword that was said to possess the power to defeat any enemy.</li>
+                <li>A scientist accidentally discovered a formula that could reverse the aging process, but its consequences were unforeseeable.</li>
+                <li>Amidst the chaos of a post-apocalyptic world, a group of survivors formed an unlikely family, finding hope in each other.</li>
+                <li>A lonely astronaut on a distant planet received a mysterious signal from Earth, sparking a journey of self-discovery and longing for home.</li>
+                <li>In a hidden forest, a talking squirrel and a wise owl joined forces to protect their home from encroaching deforestation.</li>
+                <li>An artist painted a portrait that seemed to come to life, blurring the lines between art and reality.</li>
+                <li>On a rainy afternoon, an antique shop owner stumbled upon a dusty, ancient map that hinted at a long-forgotten treasure.</li>
+                <li>In a remote village, a young orphan discovered a magical amulet that granted extraordinary powers, but at a great cost.</li>
+                <li>A time traveler accidentally altered the course of history and had to find a way to set things right.</li>
+                <li>In a world where music was forbidden, a talented musician composed a symphony that ignited a revolution.</li>
+                <li>An archaeologist unearthed an ancient relic that held the key to solving a centuries-old mystery.</li>
+                <li>In a city of robots, a curious android questioned the meaning of emotions and embarked on a quest for self-awareness.</li>
+                <li>A young witch in training accidentally turned her cat into a talking companion, leading to misadventures and magical discoveries.</li>
+                <li>On a desert island, a castaway befriended a talking parrot who held the secrets to escaping the island's curse.</li>
+                <li>In a parallel universe, doppelgangers from different worlds swapped places, causing chaos and comedy.</li>
+                <li>A detective pursued a cunning serial killer who left cryptic clues that led to an unexpected revelation.</li>
+                <li>In a futuristic society, a rebel hacker uncovered a government conspiracy that threatened the freedom of all citizens.</li>
+                <li>A time-traveling scientist met their younger self and had to make a decision that would alter the course of their life.</li>
+                <li>A magical library contained books that could predict the future, but reading them came with a price.</li>
+                <li>In a world where dreams became reality, a child's nightmare threatened to consume everything.</li>
+                <li>Deep in the Amazon rainforest, an explorer encountered a tribe with ancient knowledge that could save humanity from disaster.</li>
+                <li>A sentient robot learned the value of friendship and empathy while navigating a world of humans.</li>
+                <li>In a haunted mansion, a group of strangers gathered for a seance that unleashed supernatural forces.</li>
+                <li>A chef discovered an enchanted cookbook that brought dishes to life but also caused culinary chaos.</li>
+                <li>In a steampunk city, an inventor created a machine that could control time, leading to unforeseen consequences.</li>
+                <li>A young witch attended a school of magic, where she uncovered a dark secret hidden within the institution.</li>
+                <li>An ancient dragon awoke from slumber and formed an unlikely bond with a fearless young adventurer.</li>
+                <li>In a post-apocalyptic wasteland, a wanderer found a garden that held the key to restoring the world's lost beauty.</li>
+                <li>A scientist invented a device that allowed communication with parallel universes, leading to unexpected connections and challenges.</li>
+                <li>A detective in a noir-inspired city solved a case that revealed a web of corruption and betrayal.</li>
+                <li>In a realm of talking animals, a clever fox outwitted a cunning wolf in a battle of wits.</li>
+                <li>A cursed painting trapped the souls of those who gazed upon it, and a brave soul sought to break the curse.</li>
+                <li>In a world of magic, a young sorcerer discovered a spell that could bring the dead back to life, but at a great cost.</li>
+                <li>A brilliant inventor created a sentient robot, sparking a debate about the rights and ethics of artificial intelligence.</li>
+                <li>In a city plagued by crime, a masked vigilante emerged to protect the innocent and bring justice to the guilty.</li>
+                <li>A time-traveling historian accidentally altered the course of a historical event and had to set things right before history unraveled.</li>
+                <li>A group of friends embarked on a cross-country road trip, discovering the beauty of the open road and the bonds of friendship.</li>
+                <li>In a land of mythical creatures, a young dragon befriended a lonely unicorn and together, they restored harmony to their world.</li>
+                <li>An alien stranded on Earth disguised as a human learned about humanity's quirks and complexities.</li>
+                <li>In a medieval kingdom, a humble squire uncovered a plot to overthrow the king and had to become a hero to save the realm.</li>
+                <li>A mysterious package arrived at a young woman's doorstep, containing a map to an uncharted island filled with treasures and danger.</li>
+                <li>In a dystopian future, a group of rebels fought against a totalitarian regime using art as their weapon.</li>
+                <li>A young girl discovered a hidden portal to a world of talking animals, and together, they embarked on adventures and life lessons.</li>
+                <li>In a world without color, an artist found a way to bring beauty back to life through their paintings.</li>
+                <li>A stranded astronaut on a distant planet had to rely on wit and ingenuity to survive until rescue.</li>
+                <li>In a land of giants, a tiny mouse befriended a gentle giant and together, they thwarted the plans of a menacing giant.</li>
+                <li>A talented musician made a pact with a mysterious entity to become the greatest virtuoso in history, but it came at a terrible price.</li>
+                <li>In a city of superheroes, an ordinary citizen discovered a hidden power within themselves and became an unexpected hero.</li>
+                <li>A cursed book brought misfortune to all who possessed it, and a group of friends had to break the curse to save their lives.</li>
+                <li>A group of time-traveling tourists accidentally altered a significant historical event, leading to a world where everything was different.</li>
+                <li>In a magical forest, a young fairy embarked on a quest to rescue her kidnapped sister from a mischievous sprite.</li>
+                <li>A robot janitor in a space station stumbled upon an alien artifact that held the key to understanding the universe's greatest mysteries.</li>
+                <li>In a realm of talking animals, a clever fox outwitted a cunning wolf in a battle of wits.</li>
+                <li>A cursed painting trapped the souls of those who gazed upon it, and a brave soul sought to break the curse.</li>
+                <li>In a world of magic, a young sorcerer discovered a spell that could bring the dead back to life, but at a great cost.</li>
+                <li>A brilliant inventor created a sentient robot, sparking a debate about the rights and ethics of artificial intelligence.</li>
+                <li>In a city plagued by crime, a masked vigilante emerged to protect the innocent and bring justice to the guilty.</li>
+                <li>A time-traveling historian accidentally altered the course of a historical event and had to set things right before history unraveled.</li>
+                <li>A group of friends embarked on a cross-country road trip, discovering the beauty of the open road and the bonds of friendship.</li>
+                <li>In a land of mythical creatures, a young dragon befriended a lonely unicorn and together, they restored harmony to their world.</li>
+                <li>An alien stranded on Earth disguised as a human learned about humanity's quirks and complexities.</li>
+                <li>In a medieval kingdom, a humble squire uncovered a plot to overthrow the king and had to become a hero to save the realm.</li>
+                <li>A mysterious package arrived at a young woman's doorstep, containing a map to an uncharted island filled with treasures and danger.</li>
+                <li>In a dystopian future, a group of rebels fought against a totalitarian regime using art as their weapon.</li>
+                <li>A young girl discovered a hidden portal to a world of talking animals, and together, they embarked on adventures and life lessons.</li>
+                <li>In a world without color, an artist found a way to bring beauty back to life through their paintings.</li>
+                <li>A stranded astronaut on a distant planet had to rely on wit and ingenuity to survive until rescue.</li>
+                <li>In a land of giants, a tiny mouse befriended a gentle giant and together, they thwarted the plans of a menacing giant.</li>
+                <li>A talented musician made a pact with a mysterious entity to become the greatest virtuoso in history, but it came at a terrible price.</li>
+                <li>In a city of superheroes, an ordinary citizen discovered a hidden power within themselves and became an unexpected hero.</li>
+                <li>A cursed book brought misfortune to all who possessed it, and a group of friends had to break the curse to save their lives.</li>
+                <li>A group of time-traveling tourists accidentally altered a significant historical event, leading to a world where everything was different.</li>
+                <li>In a magical forest, a young fairy embarked on a quest to rescue her kidnapped sister from a mischievous sprite.</li>
+                <li>A robot janitor in a space station stumbled upon an alien artifact that held the key to understanding the universe's greatest mysteries.</li>
+                <li>In a world where dreams became reality, a child's nightmare threatened to consume everything.</li>
+                <li>Deep in the Amazon rainforest, an explorer encountered a tribe with ancient knowledge that could save humanity from disaster.</li>
+                <li>A sentient robot learned the value of friendship and empathy while navigating a world of humans.</li>
+                <li>A detective pursued a cunning serial killer who left cryptic clues that led to an unexpected revelation.</li>
+                <li>In a futuristic society, a rebel hacker uncovered a government conspiracy that threatened the freedom of all citizens.</li>
+                <li>A time-traveling scientist met their younger self and had to make a decision that would alter the course of their life.</li>
+                <li>A magical library contained books that could predict the future, but reading them came with a price.</li>
+                <li>A talented young chef discovered an enchanted cookbook that brought dishes to life but also caused culinary chaos.</li>
+                <li>In a steampunk city, an inventor created a machine that could control time, leading to unforeseen consequences.</li>
+                <li>A young witch in training accidentally turned her cat into a talking companion, leading to misadventures and magical discoveries.</li>
+                <li>On a desert island, a castaway befriended a talking parrot who held the secrets to escaping the island's curse.</li>
+                <li>In a parallel universe, doppelgangers from different worlds swapped places, causing chaos and comedy.</li>
+                <li>A detective in a noir-inspired city solved a case that revealed a web of corruption and betrayal.</li>
+                <li>In a realm of talking animals, a clever fox outwitted a cunning wolf in a battle of wits.</li>
+                <li>A cursed painting trapped the souls of those who gazed upon it, and a brave soul sought to break the curse.</li>
+                <li>In a world of magic, a young sorcerer discovered a spell that could bring the dead back to life, but at a great cost.</li>
+                <li>A brilliant inventor created a sentient robot, sparking a debate about the rights and ethics of artificial intelligence.</li>
+                <li>In a city plagued by crime, a masked vigilante emerged to protect the innocent and bring justice to the guilty.</li>
+                <li>A time-traveling historian accidentally altered the course of a historical event and had to set things right before history unraveled.</li>
+                <li>A group of friends embarked on a cross-country road trip, discovering the beauty of the open road and the bonds of friendship.</li>
+                <li>In a land of mythical creatures, a young dragon befriended a lonely unicorn and together, they restored harmony to their world.</li>
+                <li>An alien stranded on Earth disguised as a human learned about humanity's quirks and complexities.</li>
+                <li>In a medieval kingdom, a humble squire uncovered a plot to overthrow the king and had to become a hero to save the realm.</li>
+                <li>A mysterious package arrived at a young woman's doorstep, containing a map to an uncharted island filled with treasures and danger.</li>
+                <li>In a dystopian future, a group of rebels fought against a totalitarian regime using art as their weapon.</li>
+                <li>A young girl discovered a hidden portal to a world of talking animals, and together, they embarked on adventures and life lessons.</li>
+                <li>In a world without color, an artist found a way to bring beauty back to life through their paintings.</li>
+                <li>A stranded astronaut on a distant planet had to rely on wit and ingenuity to survive until rescue.</li>
+                <li>In a land of giants, a tiny mouse befriended a gentle giant and together, they thwarted the plans of a menacing giant.</li>
+                <li>A talented musician made a pact with a mysterious entity to become the greatest virtuoso in history, but it came at a terrible price.</li>
+                <li>In a city of superheroes, an ordinary citizen discovered a hidden power within themselves and became an unexpected hero.</li>
+                <li>A cursed book brought misfortune to all who possessed it, and a group of friends had to break the curse to save their lives.</li>
+                <li>A group of time-traveling tourists accidentally altered a significant historical event, leading to a world where everything was different.</li>
+                <li>In a magical forest, a young fairy embarked on a quest to rescue her kidnapped sister from a mischievous sprite.</li>
+                <li>A robot janitor in a space station stumbled upon an alien artifact that held the key to understanding the universe's greatest mysteries.</li>
+                <li>In a world where dreams became reality, a child's nightmare threatened to consume everything.</li>
+                <li>Deep in the Amazon rainforest, an explorer encountered a tribe with ancient knowledge that could save humanity from disaster.</li>
+                <li>A sentient robot learned the value of friendship and empathy while navigating a world of humans.</li>
+                <li>A detective pursued a cunning serial killer who left cryptic clues that led to an unexpected revelation.</li>
+                <li>In a futuristic society, a rebel hacker uncovered a government conspiracy that threatened the freedom of all citizens.</li>
+                <li>A time-traveling scientist met their younger self and had to make a decision that would alter the course of their life.</li>
+                <li>A magical library contained books that could predict the future, but reading them came with a price.</li>
+                <li>A talented young chef discovered an enchanted cookbook that brought dishes to life but also caused culinary chaos.</li>
+                <li>In a steampunk city, an inventor created a machine that could control time, leading to unforeseen consequences.</li>
+                <li>A young witch in training accidentally turned her cat into a talking companion, leading to misadventures and magical discoveries.</li>
+                <li>On a desert island, a castaway befriended a talking parrot who held the secrets to escaping the island's curse.</li>
+                <li>In a parallel universe, doppelgangers from different worlds swapped places, causing chaos and comedy.</li>
+                <li>A detective in a noir-inspired city solved a case that revealed a web of corruption and betrayal.</li>
+                <li>In a realm of talking animals, a clever fox outwitted a cunning wolf in a battle of wits.</li>
+                <li>A cursed painting trapped the souls of those who gazed upon it, and a brave soul sought to break the curse.</li>
+                <li>In a world of magic, a young sorcerer discovered a spell that could bring the dead back to life, but at a great cost.</li>
+                <li>A brilliant inventor created a sentient robot, sparking a debate about the rights and ethics of artificial intelligence.</li>
+                <li>In a city plagued by crime, a masked vigilante emerged to protect the innocent and bring justice to the guilty.</li>
+                <li>A time-traveling historian accidentally altered the course of a historical event and had to set things right before history unraveled.</li>
+                <li>A group of friends embarked on a cross-country road trip, discovering the beauty of the open road and the bonds of friendship.</li>
+                <li>In a land of mythical creatures, a young dragon befriended a lonely unicorn and together, they restored harmony to their world.</li>
+                <li>An alien stranded on Earth disguised as a human learned about humanity's quirks and complexities.</li>
+                <li>In a medieval kingdom, a humble squire uncovered a plot to overthrow the king and had to become a hero to save the realm.</li>
+                <li>A mysterious package arrived at a young woman's doorstep, containing a map to an uncharted island filled with treasures and danger.</li>
+                <li>In a dystopian future, a group of rebels fought against a totalitarian regime using art as their weapon.</li>
+                <li>A young girl discovered a hidden portal to a world of talking animals, and together, they embarked on adventures and life lessons.</li>
+                <li>In a world without color, an artist found a way to bring beauty back to life through their paintings.</li>
+                <li>A stranded astronaut on a distant planet had to rely on wit and ingenuity to survive until rescue.</li>
+                <li>In a land of giants, a tiny mouse befriended a gentle giant and together, they thwarted the plans of a menacing giant.</li>
+                <li>A talented musician made a pact with a mysterious entity to become the greatest virtuoso in history, but it came at a terrible price.</li>
+                <li>In a city of superheroes, an ordinary citizen discovered a hidden power within themselves and became an unexpected hero.</li>
+                <li>A cursed book brought misfortune to all who possessed it, and a group of friends had to break the curse to save their lives.</li>
+                <li>A group of time-traveling tourists accidentally altered a significant historical event, leading to a world where everything was different.</li>
+                <li>In a magical forest, a young fairy embarked on a quest to rescue her kidnapped sister from a mischievous sprite.</li>
+                <li>A robot janitor in a space station stumbled upon an alien artifact that held the key to understanding the universe's greatest mysteries.</li>
+                <li>In a world where dreams became reality, a child's nightmare threatened to consume everything.</li>
+                <li>Deep in the Amazon rainforest, an explorer encountered a tribe with ancient knowledge that could save humanity from disaster.</li>
+                <li>A sentient robot learned the value of friendship and empathy while navigating a world of humans.</li>
+                <li>A detective pursued a cunning serial killer who left cryptic clues that led to an unexpected revelation.</li>
+                <li>In a futuristic society, a rebel hacker uncovered a government conspiracy that threatened the freedom of all citizens.</li>
+                <li>A time-traveling scientist met their younger self and had to make a decision that would alter the course of their life.</li>
+                <li>A magical library contained books that could predict the future, but reading them came with a price.</li>
+                <li>A talented young chef discovered an enchanted cookbook that brought dishes to life but also caused culinary chaos.</li>
+                <li>In a steampunk city, an inventor created a machine that could control time, leading to unforeseen consequences.</li>
+                <li>A young witch in training accidentally turned her cat into a talking companion, leading to misadventures and magical discoveries.</li>
+                <li>On a desert island, a castaway befriended a talking parrot who held the secrets to escaping the island's curse.</li>
+                <li>In a parallel universe, doppelgangers from different worlds swapped places, causing chaos and comedy.</li>
+                <li>A detective in a noir-inspired city solved a case that revealed a web of corruption and betrayal.</li>
+                <li>In a realm of talking animals, a clever fox outwitted a cunning wolf in a battle of wits.</li>
+                <li>A cursed painting trapped the souls of those who gazed upon it, and a brave soul sought to break the curse.</li>
+                <li>In a world of magic, a young sorcerer discovered a spell that could bring the dead back to life, but at a great cost.</li>
+                <li>A brilliant inventor created a sentient robot, sparking a debate about the rights and ethics of artificial intelligence.</li>
+                <li>In a city plagued by crime, a masked vigilante emerged to protect the innocent and bring justice to the guilty.</li>
+                <li>A time-traveling historian accidentally altered the course of a historical event and had to set things right before history unraveled.</li>
+                <li>A group of friends embarked on a cross-country road trip, discovering the beauty of the open road and the bonds of friendship.</li>
+                <li>In a land of mythical creatures, a young dragon befriended a lonely unicorn and together, they restored harmony to their world.</li>
+                <li>An alien stranded on Earth disguised as a human learned about humanity's quirks and complexities.</li>
+                <li>In a medieval kingdom, a humble squire uncovered a plot to overthrow the king and had to become a hero to save the realm.</li>
+                <li>A mysterious package arrived at a young woman's doorstep, containing a map to an uncharted island filled with treasures and danger.</li>
+                <li>In a dystopian future, a group of rebels fought against a totalitarian regime using art as their weapon.</li>
+                <li>A young girl discovered a hidden portal to a world of talking animals, and together, they embarked on adventures and life lessons.</li>
+                <li>In a world without color, an artist found a way to bring beauty back to life through their paintings.</li>
+                <li>A stranded astronaut on a distant planet had to rely on wit and ingenuity to survive until rescue.</li>
+                <li>In a land of giants, a tiny mouse befriended a gentle giant and together, they thwarted the plans of a menacing giant.</li>
+                <li>A talented musician made a pact with a mysterious entity to become the greatest virtuoso in history, but it came at a terrible price.</li>
+                <li>In a city of superheroes, an ordinary citizen discovered a hidden power within themselves and became an unexpected hero.</li>
+                <li>A cursed book brought misfortune to all who possessed it, and a group of friends had to break the curse to save their lives.</li>
+                <li>A group of time-traveling tourists accidentally altered a significant historical event, leading to a world where everything was different.</li>
+                <li>In a magical forest, a young fairy embarked on a quest to rescue her kidnapped sister from a mischievous sprite.</li>
+                <li>A robot janitor in a space station stumbled upon an alien artifact that held the key to understanding the universe's greatest mysteries.</li>
+            </ul>
+            
+    
+        </div>
+    </div>
+    <script>
+        var activeFilters = [];
+
+        function addFilter() {
+            var filterValue = prompt("Enter filter keyword:");
+            if (filterValue !== null && filterValue.trim() !== "") {
+                activeFilters.push(filterValue.toUpperCase());
+                updateActiveFilters();
+                filter();
+            }
+        }
+
+        function removeFilter(index) {
+            activeFilters.splice(index, 1);
+            updateActiveFilters();
+            filter();
+        }
+
+        function updateActiveFilters() {
+            var activeFilterList = document.getElementById('active-filter-list');
+            activeFilterList.innerHTML = ''; 
+
+            for (var i = 0; i < activeFilters.length; i++) {
+                var li = document.createElement('li');
+                li.textContent = activeFilters[i];
+                var removeButton = document.createElement('button');
+                removeButton.textContent = 'X';
+                removeButton.onclick = (function(index) {
+                    return function() {
+                        removeFilter(index);
+                    };
+                })(i); 
+
+                li.appendChild(removeButton);
+                activeFilterList.appendChild(li);
+            }
+        }
+
+        function filter() {
+            var input, ul, li, i, txValue, display;
+            input = document.getElementById('myInput');
+            ul = document.getElementById('myUL');
+            li = ul.getElementsByTagName('li');
+
+            for (i = 0; i < li.length; i++) {
+                txValue = li[i].textContent || li[i].innerText;
+                display = 'none';
+
+                if (activeFilters.length === 0) {
+                    display = ''; 
+                } else {
+                    for (var j = 0; j < activeFilters.length; j++) {
+                        if (txValue.toUpperCase().indexOf(activeFilters[j]) > -1) {
+                            display = '';
+                            break;
+                        }
+                    }
+                }
+
+                li[i].style.display = display;
+            }
+        }
+    </script>
+    
+</body>
+</html>
