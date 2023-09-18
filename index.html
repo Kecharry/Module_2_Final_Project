@@ -217,13 +217,13 @@
         var activeFilters = [];
 
         function addFilter() {
-            var filterValue = prompt("Enter filter keyword:");
-            if (filterValue !== null && filterValue.trim() !== "") {
-                activeFilters.push(filterValue.toUpperCase());
-                updateActiveFilters();
-                filter();
-            }
-        }
+    var searchInput = document.getElementById("search-input").value;
+    if (searchInput) {
+        activeFilters.push(new RegExp(searchInput, 'i'));
+        document.getElementById("active-filter-list").innerHTML += '<li>' + searchInput + ' <button onclick="removeFilter(' + (activeFilters.length - 1) + ')">Remove</button></li>';
+        filter(); // Update the filter immediately
+    }
+}
 
         function removeFilter(index) {
             activeFilters.splice(index, 1);
@@ -232,50 +232,41 @@
         }
 
         function updateActiveFilters() {
-            var activeFilterList = document.getElementById('active-filter-list');
-            activeFilterList.innerHTML = ''; 
-
+            var activeFilterList = document.getElementById("active-filter-list");
+            activeFilterList.innerHTML = '';
             for (var i = 0; i < activeFilters.length; i++) {
-                var li = document.createElement('li');
-                li.textContent = activeFilters[i];
-                var removeButton = document.createElement('button');
-                removeButton.textContent = 'X';
-                removeButton.onclick = (function(index) {
-                    return function() {
-                        removeFilter(index);
-                    };
-                })(i); 
-
-                li.appendChild(removeButton);
-                activeFilterList.appendChild(li);
+                activeFilterList.innerHTML += '<li>' + activeFilters[i].source + ' <button onclick="removeFilter(' + i + ')">Remove</button></li>';
             }
         }
 
         function filter() {
-            var input, ul, li, i, txValue, display;
-            input = document.getElementById('myInput');
-            ul = document.getElementById('myUL');
-            li = ul.getElementsByTagName('li');
+    var input, ul, li, a, i, txtValue;
+    input = document.getElementById('search-input');
+    ul = document.getElementById("myUL");
+    li = ul.getElementsByTagName('li');
 
-            for (i = 0; i < li.length; i++) {
-                txValue = li[i].textContent || li[i].innerText;
-                display = 'none';
+    var primaryFilter = new RegExp(input.value, 'i');
 
-                if (activeFilters.length === 0) {
-                    display = ''; 
-                } else {
-                    for (var j = 0; j < activeFilters.length; j++) {
-                        if (txValue.toUpperCase().indexOf(activeFilters[j]) > -1) {
-                            display = '';
-                            break;
-                        }
-                    }
-                }
-
-                li[i].style.display = display;
+    for (i = 0; i < li.length; i++) {
+        txtValue = li[i].textContent || li[i].innerText;
+        var isVisible = primaryFilter.test(txtValue);
+        for (var j = 0; j < activeFilters.length; j++) {
+            if (!activeFilters[j].test(txtValue)) {
+                isVisible = false;
+                break;
             }
         }
+        li[i].style.display = isVisible ? "" : "none";
+    }
+}
+
+
+
+        // Initialize the filtering
+        var searchInput = document.getElementById("search-input");
+        searchInput.addEventListener('input', filter);
     </script>
+
     
 </body>
 </html>
