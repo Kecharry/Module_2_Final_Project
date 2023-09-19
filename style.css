@@ -3,7 +3,6 @@ body {
     font-family: 'Roboto', sans-serif;
     margin: 0;
     padding: 0;
-    height: 100%;
     background-color: #121212; /* Dark background color */
     color: #fff;
 }
@@ -25,7 +24,12 @@ header {
     align-items: center;
     margin: 20px;
 }
-
+#Story-container {
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    margin: 20px;
+}
 /* Search input and button styles */
 #search-bar {
     display: flex;
@@ -45,13 +49,51 @@ header {
     background-color: #222; /* Slightly darker input background */
     color: #fff;
 }
+#Story-bar {
+    display: flex;
+    align-items: center;
+    background-color: #1e1e1e; /* Dark background color */
+    border-radius: 5px;
+    box-shadow: 0 2px 4px rgba(0, 0, 0, 0.2);
+}
+
+#story-input {
+    flex-grow: 1;
+    padding: 10px;
+    border: none;
+    border-radius: 5px 0 0 5px;
+    outline: none;
+    font-size: 16px;
+    background-color: #222; /* Slightly darker input background */
+    color: #fff;
+}
+
+#add-components-container {
+    display: flex;
+    align-items: center;
+    margin: 20px;
+}
+
+
 
 #add-filter-button {
+    background-color: #7ab8f9;
+    color: #fff;
+    border: none;
+    padding: 10px 15px;
+    border-radius: 5px;
+    cursor: pointer;
+   
+}
+
+
+#add-story-button {
+    
     background-color: #007bff;
     color: #fff;
     border: none;
     padding: 10px 15px;
-    border-radius: 0 5px 5px 0;
+    border-radius: 5px;
     cursor: pointer;
     font-size: 16px;
 }
@@ -63,7 +105,7 @@ header {
 }
 
 /* Style individual columns */
-.column {
+.list-container {
     flex-basis: 100%;
     padding: 20px;
     background-color: #1e1e1e; /* Dark background color */
@@ -73,7 +115,7 @@ header {
     margin-right: 10px;
 }
 
-.column h2 {
+.list-container h2 {
     margin-bottom: 20px;
     position: relative;
     text-align: center;
@@ -82,7 +124,7 @@ header {
 }
 
 /* Style the underline for headings */
-.column h2::after {
+.list-container h2::after {
     content: "";
     display: block;
     width: 50px;
@@ -92,4 +134,147 @@ header {
     bottom: -5px;
     left: 50%;
     transform: translateX(-50%);
+}
+
+/* Style list items */
+.shopping-list {
+    list-style: none;
+    padding: 0;
+}
+
+.shopping-list li {
+    margin-bottom: 10px;
+    font-size: 16px;
+    color: #fff;
+}
+
+/* Style active filters */
+#active-filters {
+    margin-top: 20px;
+    text-align: center;
+}
+
+#active-filter-list {
+    list-style: none;
+    padding: 0;
+    display: inline-block;
+}
+
+#active-filter-list li {
+    margin-right: 10px;
+    display: inline-block;
+    font-size: 16px;
+    color: #007bff;
+}
+
+/* Style totals container */
+.totals-container {
+    flex-basis: 100%;
+    padding: 20px;
+    background-color: #1e1e1e; /* Dark background color */
+    border-radius: 5px;
+    box-shadow: 0 0 10px rgba(0, 0, 0, 0.4);
+    text-align: center;
+    margin-top: 20px;
+}
+
+.totals-container h2 {
+    margin-bottom: 20px;
+    text-align: center;
+    font-size: 24px; /* Larger font size */
+    color: #007bff; /* Highlight color */
+}
+
+.totals-container span {
+    display: block;
+    font-size: 18px;
+    color: #fff;
+    margin-bottom: 10px;
+}
+
+/* Toggle dark mode button */
+#toggle-dark-mode {
+    background-color: #007bff;
+    color: #fff;
+    border: none;
+    padding: 10px 15px;
+    border-radius: 5px;
+    cursor: pointer;
+    font-size: 16px;
+    position: fixed;
+    top: 20px;
+    right: 20px;
+}
+
+/* Dark mode icon */
+#toggle-dark-mode i {
+    margin-right: 5px;
+}
+
+/* Light mode styles */
+.light-mode {
+    background-color: #f5deb3; /* Oatmeal background color */
+    color: #000; /* Black text color */
+}
+
+.light-mode header {
+    background-color: #f0e68c; /* Light header background color */
+    border-bottom: 2px solid #007bff;
+}
+
+.light-mode #search-bar {
+    background-color: #f0e68c; /* Light background color */
+}
+
+.light-mode #search-input {
+    background-color: #fafad2; /* Light input background color */
+    color: #000; /* Black text color */
+}
+
+.light-mode #add-components-container {
+    display: flex;
+    align-items: center;
+    margin: 20px;
+}
+
+/* Style the Add Item and Add Filter buttons in light mode */
+.light-mode #add-item-button,
+.light-mode #add-filter-button {
+    background-color: #007bff;
+    color: #fff;
+}
+
+.light-mode .list-container {
+    background-color: #f0e68c; /* Light background color */
+    box-shadow: 0 0 10px rgba(0, 0, 0, 0.2);
+}
+
+.light-mode .list-container h2 {
+    color: #007bff;
+}
+
+.light-mode .shopping-list li {
+    color: #000; /* Black text color */
+}
+
+.light-mode #active-filter-list li {
+    color: #007bff;
+}
+
+.light-mode .totals-container {
+    background-color: #f0e68c; /* Light background color */
+    box-shadow: 0 0 10px rgba(0, 0, 0, 0.2);
+}
+
+.light-mode .totals-container h2 {
+    color: #007bff;
+}
+
+.light-mode .totals-container span {
+    color: #000; /* Black text color */
+}
+
+/* Light mode icon */
+#toggle-light-mode i {
+    margin-right: 5px;
 }
