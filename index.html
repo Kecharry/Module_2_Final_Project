@@ -23,7 +23,7 @@
     <div id="Story-container">
         <div id="Story-bar">
             <input type="text" id="story-input" placeholder="What do we need to buy?">
-            <button id="add-story-button" onclick="addStory()">Add Item</button>
+            <button id="add-story-button" onclick="addItem()">Add Item</button>
         </div>
     </div>
     <div id="active-filters">
@@ -57,143 +57,206 @@
             <p>Total Items: <span id="total-items">0</span></p>
         </div>
     </div>
+    <div style="text-align: center; margin-bottom: 20px;">
+        <button onclick="clearShoppingList()">Clear List</button>
+    </div>
     <script>
-var activeFilters = [];
-var shoppingList = {
-    items: [],
-    costs: [],
-    counts: [],
-};
-var isDarkMode = false; // Variable to track dark mode state
-
-function loadShoppingList() {
-    var storedShoppingList = localStorage.getItem("shoppingList");
-    if (storedShoppingList) {
-        shoppingList = JSON.parse(storedShoppingList);
-        updateShoppingListUI();
-    }
-}
-
-// Call loadShoppingList() to display stored shopping list when the page loads
-loadShoppingList();
-
-// Function to update and display active filters
-function updateActiveFilters() {
-    var activeFilterList = document.getElementById("active-filter-list");
-    activeFilterList.innerHTML = '';
-    for (var i = 0; i < activeFilters.length; i++) {
-        var filterText = activeFilters[i].source;
-        activeFilterList.innerHTML += `
-            <li>${filterText} <button onclick="removeFilter(${i})">Remove</button></li>
-        `;
-    }
-}
-
-// Function to add a new filter
-function addFilter() {
-    var searchInput = document.getElementById("search-input").value;
-    if (searchInput) {
-        activeFilters.push(new RegExp(searchInput, 'i'));
-        document.getElementById("active-filter-list").innerHTML += `
-            <li>${searchInput} <button onclick="removeFilter(${activeFilters.length - 1})">Remove</button></li>
-        `;
-        filter(); // Update the filter immediately
-    }
-}
-
-// Function to remove a filter
-function removeFilter(index) {
-    activeFilters.splice(index, 1);
-    updateActiveFilters();
-    filter();
-}
-
-// Function to filter the shopping list based on search input and active filters
-function filter() {
-    var input = document.getElementById('search-input');
-    var shoppingListItems = shoppingList.items;
-    var shoppingListCosts = shoppingList.costs;
-    var shoppingListCounts = shoppingList.counts;
-
-    for (var i = 0; i < shoppingListItems.length; i++) {
-        var isVisible = true; // Initialize to true
-
-        // Apply active filters using regex
-        for (var j = 0; j < activeFilters.length; j++) {
-            if (!activeFilters[j].test(shoppingListItems[i])) {
-                isVisible = false;
-                break; // No need to check other filters if one fails
+        var activeFilters = [];
+        var shoppingList = {
+            items: [],
+            costs: [],
+            counts: [],
+        };
+        var isDarkMode = false; // Variable to track dark mode state
+    
+        // Function to format cost input to "$x.xx" format
+        function formatCost(costInput) {
+            const numericValue = parseFloat(costInput.replace(/[^\d.]/g, ''));
+            if (!isNaN(numericValue)) {
+                const formattedCost = "$" + numericValue.toFixed(2);
+                return formattedCost;
+            } else {
+                
+                return "";
             }
         }
-
-        // Display or hide the item based on visibility
-        var itemElement = document.getElementById(`item-${i}`);
-        if (itemElement) {
-            itemElement.style.display = isVisible ? "" : "none";
+    
+        function loadShoppingList() {
+            var storedShoppingList = localStorage.getItem("shoppingList");
+            if (storedShoppingList) {
+                shoppingList = JSON.parse(storedShoppingList);
+                updateShoppingListUI();
+                updateTotal(); // Calculate the total when loading the list
+                loadShoppingList();
+                updateShoppingListUI();
+            }
         }
-    }
-}
+    
+        // Call loadShoppingList() to display the stored shopping list when the page loads
+        
+    
+        // Function to update and display active filters
+        function updateActiveFilters() {
+            var activeFilterList = document.getElementById("active-filter-list");
+            activeFilterList.innerHTML = '';
+            for (var i = 0; i < activeFilters.length; i++) {
+                var filterText = activeFilters[i].source;
+                activeFilterList.innerHTML += `
+                    <li>${filterText} <button onclick="removeFilter(${i})">Remove</button></li>
+                `;
+            }
+        }
+    
+        // Function to add a new filter
+        function addFilter() {
+            var searchInput = document.getElementById("search-input").value;
+            if (searchInput) {
+                activeFilters.push(new RegExp(searchInput, 'i'));
+                document.getElementById("active-filter-list").innerHTML += `
+                    <li>${searchInput} <button onclick="removeFilter(${activeFilters.length - 1})">Remove</button></li>
+                `;
+                filter(); // Update the filter immediately
+            }
+        }
+    
+        // Function to remove a filter
+        function removeFilter(index) {
+            activeFilters.splice(index, 1);
+            updateActiveFilters();
+            filter();
+        }
+    
+        // Function to filter the shopping list based on search input and active filters
+        function filter() {
+            var input = document.getElementById('search-input');
+            var searchQuery = input.value.toLowerCase();
+    
+            var filteredItems = [];
+            var filteredCosts = [];
+            var filteredCounts = [];
+    
+            for (var i = 0; i < shoppingList.items.length; i++) {
+                var item = shoppingList.items[i].toLowerCase();
+                var cost = shoppingList.costs[i].toLowerCase();
+                var count = shoppingList.counts[i].toLowerCase();
+    
+                if (item.includes(searchQuery) || cost.includes(searchQuery) || count.includes(searchQuery)) {
+                    filteredItems.push(shoppingList.items[i]);
+                    filteredCosts.push(shoppingList.costs[i]);
+                    filteredCounts.push(shoppingList.counts[i]);
+                }
+            }
+    
+            // Update the shopping list with filtered data
+            shoppingList.items = filteredItems;
+            shoppingList.costs = filteredCosts;
+            shoppingList.counts = filteredCounts;
+    
+            // Update total and total count
+            updateTotal();
+    
+            // Update the shopping list UI
+            updateShoppingListUI();
+        }
+    
+        // Function to update the shopping list UI
+        function updateShoppingListUI() {
+            var itemUl = document.getElementById("myUL-item");
+            var costUl = document.getElementById("myUL-cost");
+            var countUl = document.getElementById("myUL-count");
+    
+            itemUl.innerHTML = "";
+            costUl.innerHTML = "";
+            countUl.innerHTML = "";
+    
+            for (var i = 0; i < shoppingList.items.length; i++) {
+                itemUl.innerHTML += `<li>${shoppingList.items[i]}</li>`;
+                costUl.innerHTML += `<li>${shoppingList.costs[i]}</li>`;
+                countUl.innerHTML += `<li>${shoppingList.counts[i]}</li>`;
+            }
+            loadShoppingList()
+        }
+    
+        // Function to update the total cost and total count
+        function updateTotal() {
+            var totalCost = 0;
+            var totalCount = 0;
+    
+            for (var i = 0; i < shoppingList.costs.length; i++) {
+                totalCost += parseFloat(shoppingList.costs[i].replace("$", ""));
+                totalCount += parseInt(shoppingList.counts[i]);
+            }
+    
+            document.getElementById("total-cost").textContent = "$" + totalCost.toFixed(2);
+            document.getElementById("total-count").textContent = totalCount;
+        }
+    
+        // Function to add a new item, cost, and count to the shopping list
+        function addItem() {
+            const itemName = document.getElementById('story-input').value;
+            const itemCostInput = prompt("Enter the cost of the item (e.g., $5.00):");
+            const itemCost = formatCost(itemCostInput); // Format the cost input
+            const itemCount = prompt("Enter the count of the item:");
+    
+            if (itemName.trim() === "" || itemCost === "" || itemCount === null) {
+                // Handle empty input or invalid cost (you may want to display an error message)
+                return;
+            }
+    
+            shoppingList.items.push(itemName);
+            shoppingList.costs.push(itemCost);
+            shoppingList.counts.push(itemCount);
+    
+            localStorage.setItem("shoppingList", JSON.stringify(shoppingList));
+    
+            // Clear the input field after adding the item
+            document.getElementById('story-input').value = "";
+    
+            // Update total and total count when a new item is added
+            updateTotal();
+    
+            // Update active filters when a new item is added
+            updateActiveFilters();
+            filter(); // Update the filter to reflect the new item
+    
+            // Update the shopping list UI with the new item
+            updateShoppingListUI();
+            
+        }
+           
+        // Function to toggle dark mode
+        function toggleDarkMode() {
+            isDarkMode = !isDarkMode; // Toggle dark mode state
+    
+            // Apply dark mode or light mode styles to the entire document
+            if (isDarkMode) {
+                document.body.classList.add("dark-mode");
+                document.body.classList.remove("light-mode");
+            } else {
+                document.body.classList.remove("dark-mode");
+                document.body.classList.add("light-mode");
+            }
+        }
+        function clearShoppingList() {
+            // Clear the shopping list data
+            shoppingList.items = [];
+            shoppingList.costs = [];
+            shoppingList.counts = [];
 
-// Function to add a new item, cost, and count to the shopping list
-function addStory() {
-    const itemName = document.getElementById('story-input').value;
-    const itemCost = prompt("Enter the cost of the item (e.g., $5.00):");
-    const itemCount = prompt("Enter the count of the item:");
+            // Clear local storage
+            localStorage.removeItem("shoppingList");
 
-    if (itemName.trim() === "" || itemCost === null || itemCount === null) {
-        // Handle empty input or user cancellation (you may want to display an error message)
-        return;
-    }
-
-    shoppingList.items.push(itemName);
-    shoppingList.costs.push(itemCost);
-    shoppingList.counts.push(itemCount);
-
-    localStorage.setItem("shoppingList", JSON.stringify(shoppingList));
-
-    // Clear the input field after adding the item
-    document.getElementById('story-input').value = "";
-
-    // Update active filters when a new item is added
-    updateActiveFilters();
-    updateShoppingListUI();
-}
-
-// Function to update the shopping list UI
-function updateShoppingListUI() {
-    var itemUl = document.getElementById("myUL-item");
-    var costUl = document.getElementById("myUL-cost");
-    var countUl = document.getElementById("myUL-count");
-
-    itemUl.innerHTML = "";
-    costUl.innerHTML = "";
-    countUl.innerHTML = "";
-
-    for (var i = 0; i < shoppingList.items.length; i++) {
-        itemUl.innerHTML += `<li id="item-${i}">${shoppingList.items[i]}</li>`;
-        costUl.innerHTML += `<li>${shoppingList.costs[i]}</li>`;
-        countUl.innerHTML += `<li>${shoppingList.counts[i]}</li>`;
-    }
-
-    filter(); // Reapply filtering after updating the shopping list UI
-}
-
-// Function to toggle dark mode
-function toggleDarkMode() {
-    isDarkMode = !isDarkMode; // Toggle dark mode state
-
-    // Apply dark mode or light mode styles to the entire document
-    if (isDarkMode) {
-        document.body.classList.add("dark-mode");
-        document.body.classList.remove("light-mode");
-    } else {
-        document.body.classList.remove("dark-mode");
-        document.body.classList.add("light-mode");
-    }
-}
-
-// Initialize the filtering
-var searchInput = document.getElementById("search-input");
-searchInput.addEventListener('input', filter);
-</script>
+            // Update the shopping list UI and total
+            updateShoppingListUI();
+            updateTotal();
+        }
+        // Initialize the filtering
+        var searchInput = document.getElementById("search-input");
+        searchInput.addEventListener('input', filter);
+    </script>
+    
+        
+        
+        
+        
 </html>

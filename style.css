@@ -18,20 +18,15 @@ header {
 }
 
 /* Center the search bar */
-#search-container {
+#search-container, #Story-container {
     display: flex;
     justify-content: center;
     align-items: center;
     margin: 20px;
 }
-#Story-container {
-    display: flex;
-    justify-content: center;
-    align-items: center;
-    margin: 20px;
-}
+
 /* Search input and button styles */
-#search-bar {
+#search-bar, #Story-bar {
     display: flex;
     align-items: center;
     background-color: #1e1e1e; /* Dark background color */
@@ -39,25 +34,7 @@ header {
     box-shadow: 0 2px 4px rgba(0, 0, 0, 0.2);
 }
 
-#search-input {
-    flex-grow: 1;
-    padding: 10px;
-    border: none;
-    border-radius: 5px 0 0 5px;
-    outline: none;
-    font-size: 16px;
-    background-color: #222; /* Slightly darker input background */
-    color: #fff;
-}
-#Story-bar {
-    display: flex;
-    align-items: center;
-    background-color: #1e1e1e; /* Dark background color */
-    border-radius: 5px;
-    box-shadow: 0 2px 4px rgba(0, 0, 0, 0.2);
-}
-
-#story-input {
+#search-input, #story-input {
     flex-grow: 1;
     padding: 10px;
     border: none;
@@ -74,28 +51,35 @@ header {
     margin: 20px;
 }
 
-
-
-#add-filter-button {
+#add-filter-button, #add-story-button {
     background-color: #7ab8f9;
     color: #fff;
     border: none;
     padding: 10px 15px;
     border-radius: 5px;
     cursor: pointer;
-   
+    font-size: 16px;
 }
 
+/* Style the Clear List button */
+.clear-list-container {
+    text-align: center;
+    margin-bottom: 20px;
+    padding: 10px;
+}
 
-#add-story-button {
-    
-    background-color: #007bff;
-    color: #fff;
+.clear-list-button {
+    background-color: #ff0000; /* Change to your desired background color */
+    color: #fff; /* Text color */
+    padding: 8px 16px; /* Adjust padding as needed */
     border: none;
-    padding: 10px 15px;
-    border-radius: 5px;
+    border-radius: 4px;
     cursor: pointer;
     font-size: 16px;
+}
+
+.clear-list-button:hover {
+    background-color: #cc0000; /* Change to your desired hover color */
 }
 
 /* Style the content container */
@@ -243,6 +227,7 @@ header {
     background-color: #007bff;
     color: #fff;
 }
+
 
 .light-mode .list-container {
     background-color: #f0e68c; /* Light background color */
